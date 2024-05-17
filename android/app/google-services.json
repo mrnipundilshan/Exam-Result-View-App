@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "325197486834",
+    "project_id": "resultviewapp",
+    "storage_bucket": "resultviewapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325197486834:android:6c0ae27fd39b47f3034e6b",
+        "android_client_info": {
+          "package_name": "com.example.exam_result"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa8e__K6t74GnrgF8hlCHrN1pu6sRfD5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
