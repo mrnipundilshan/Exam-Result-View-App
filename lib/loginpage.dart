@@ -1,3 +1,4 @@
+import 'package:exam_result/viewpage.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatelessWidget {
@@ -41,6 +42,12 @@ class Loginpage extends StatelessWidget {
               onPressed: () {
                 print(username);
                 print(password);
+                if (username == "i" && password == "i") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const viewpage()),
+                  );
+                }
               },
               child: const Text("Log In")),
         ],
