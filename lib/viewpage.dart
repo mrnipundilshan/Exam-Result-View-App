@@ -1,5 +1,6 @@
 import 'package:exam_result/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class viewpage extends StatelessWidget {
@@ -13,7 +14,6 @@ class viewpage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text("Nipun Huttooo"),
             const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {

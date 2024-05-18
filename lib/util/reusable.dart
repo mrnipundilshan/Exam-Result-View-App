@@ -7,18 +7,19 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     obscureText: isPasswordType,
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
-    cursorColor: Colors.white,
-    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+    cursorColor: Colors.blue,
+    style: TextStyle(color: Colors.black.withOpacity(0.9)),
     decoration: InputDecoration(
       prefixIcon: Icon(
         icon,
-        color: Colors.white70,
+        color: const Color.fromARGB(255, 0, 0, 0),
       ),
       labelText: text,
-      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+      labelStyle:
+          TextStyle(color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.9)),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.never,
-      fillColor: Colors.white.withOpacity(0.3),
+      fillColor: Colors.blue.withOpacity(0.3),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
@@ -30,28 +31,30 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
 }
 
 Container LoginButton(BuildContext context, Function onTap) {
+  Size size = MediaQuery.of(context).size;
   return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 50,
-    margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+    alignment: Alignment.centerRight,
+    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
     child: ElevatedButton(
       onPressed: () {
         onTap();
       },
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Colors.black26;
-            }
-            return Colors.white;
-          }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
-      child: Text(
-        'Log In',
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      child: Container(
+        alignment: Alignment.center,
+        height: 50.0,
+        width: size.width * 0.5,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(80.0),
+            gradient: const LinearGradient(colors: [
+              Color.fromARGB(255, 34, 156, 255),
+              Color.fromARGB(255, 41, 62, 255)
+            ])),
+        padding: const EdgeInsets.all(0),
+        child: const Text(
+          "LOGIN",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
     ),
   );

@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Exam Result App",
         theme: ThemeData(
-          brightness: Brightness.dark,
           primarySwatch: Colors.blue,
         ),
         home: Loginpage(),
