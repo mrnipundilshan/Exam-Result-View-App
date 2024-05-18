@@ -15,8 +15,6 @@ class _LoginpageState extends State<Loginpage> {
   TextEditingController _usernameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    String username = " ";
-    String password = " ";
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -40,7 +38,12 @@ class _LoginpageState extends State<Loginpage> {
                 reusableTextField("Enter Password", Icons.lock, false,
                     _passwordTextController),
                 const SizedBox(height: 30),
-                signInButton(context, () {})
+                signInButton(context, () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const viewpage()),
+                  );
+                })
               ],
             ),
           ),
