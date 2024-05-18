@@ -1,6 +1,7 @@
 import 'package:exam_result/util/colors.dart';
 import 'package:exam_result/util/reusable.dart';
 import 'package:exam_result/viewpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
@@ -38,11 +39,18 @@ class _LoginpageState extends State<Loginpage> {
                 reusableTextField("Enter Password", Icons.lock, false,
                     _passwordTextController),
                 const SizedBox(height: 30),
-                signInButton(context, () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const viewpage()),
-                  );
+                LoginButton(context, () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: "${_usernameTextController.text}@gmail.com",
+                          password: _passwordTextController.text)
+                      .then((value) => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const viewpage()),
+                            ),
+                          });
                 })
               ],
             ),

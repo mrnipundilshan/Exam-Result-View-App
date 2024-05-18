@@ -29,7 +29,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
-Container signInButton(BuildContext context, Function onTap) {
+Container LoginButton(BuildContext context, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,

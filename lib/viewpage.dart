@@ -1,4 +1,5 @@
 import 'package:exam_result/loginpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class viewpage extends StatelessWidget {
@@ -16,9 +17,15 @@ class viewpage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Loginpage()),
+                  FirebaseAuth.instance.signOut().then(
+                    (value) {
+                      print("sign out");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Loginpage()),
+                      );
+                    },
                   );
                 },
                 child: const Text("back")),
