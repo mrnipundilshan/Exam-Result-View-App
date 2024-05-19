@@ -48,7 +48,7 @@ class _LoginpageState extends State<Loginpage> {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             LoginButton(context, () {
               FirebaseAuth.instance
                   .signInWithEmailAndPassword(
@@ -57,8 +57,7 @@ class _LoginpageState extends State<Loginpage> {
                   .then((value) => {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const viewpage()),
+                          MaterialPageRoute(builder: (context) => viewpage()),
                         ),
                       });
             }),
