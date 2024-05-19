@@ -1,4 +1,4 @@
-import 'fitness_app_theme.dart';
+import 'theme.dart';
 import 'package:flutter/material.dart';
 
 class MediterranesnDietView extends StatelessWidget {
