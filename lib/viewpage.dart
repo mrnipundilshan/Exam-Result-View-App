@@ -25,6 +25,8 @@ class _viewpageState extends State<viewpage> with TickerProviderStateMixin {
         parent: animationController!,
         curve: const Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
     addAllListData();
+
+    animationController?.forward();
   }
 
   void addAllListData() {
@@ -50,7 +52,7 @@ class _viewpageState extends State<viewpage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FitnessAppTheme.background,
+      color: Color.fromARGB(255, 255, 255, 255),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
@@ -84,7 +86,6 @@ class _viewpageState extends State<viewpage> with TickerProviderStateMixin {
             itemCount: listViews.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
-              animationController?.forward();
               return listViews[index];
             },
           );
@@ -94,71 +95,67 @@ class _viewpageState extends State<viewpage> with TickerProviderStateMixin {
   }
 
   Widget getAppBarUI() {
-    return Column(
-      children: <Widget>[
-        AnimatedBuilder(
-          animation: animationController!,
-          builder: (BuildContext context, Widget? child) {
-            return FadeTransition(
-              opacity: topBarAnimation!,
-              child: Transform(
-                transform: Matrix4.translationValues(
-                    0.0, 30 * (1.0 - topBarAnimation!.value), 0.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: FitnessAppTheme.white.withOpacity(topBarOpacity),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(32.0),
-                    ),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: FitnessAppTheme.grey
-                              .withOpacity(0.4 * topBarOpacity),
-                          offset: const Offset(1.1, 1.1),
-                          blurRadius: 10.0),
-                    ],
+    return AnimatedBuilder(
+      animation: animationController!,
+      builder: (BuildContext context, Widget? child) {
+        return FadeTransition(
+          opacity: topBarAnimation!,
+          child: Transform(
+            transform: Matrix4.translationValues(
+                0.0, 30 * (1.0 - topBarAnimation!.value), 0.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: FitnessAppTheme.white.withOpacity(topBarOpacity),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(32.0),
+                ),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color:
+                          FitnessAppTheme.grey.withOpacity(0.4 * topBarOpacity),
+                      offset: const Offset(1.1, 1.1),
+                      blurRadius: 10.0),
+                ],
+              ),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: MediaQuery.of(context).padding.top,
                   ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: MediaQuery.of(context).padding.top,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            top: 16 - 8.0 * topBarOpacity,
-                            bottom: 12 - 8.0 * topBarOpacity),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'My Diary',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontFamily: FitnessAppTheme.fontName,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22 + 6 - 6 * topBarOpacity,
-                                    letterSpacing: 1.2,
-                                    color: FitnessAppTheme.darkerText,
-                                  ),
-                                ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        top: 16 - 8.0 * topBarOpacity,
+                        bottom: 12 - 8.0 * topBarOpacity),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'My Diary',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: FitnessAppTheme.fontName,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 22 + 6 - 6 * topBarOpacity,
+                                letterSpacing: 1.2,
+                                color: Color.fromARGB(255, 255, 0, 0),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-            );
-          },
-        )
-      ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
