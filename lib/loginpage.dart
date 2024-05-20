@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exam_result/components/background.dart';
 import 'package:exam_result/util/reusable.dart';
 import 'package:exam_result/viewpage.dart';
@@ -58,7 +57,8 @@ class _LoginpageState extends State<Loginpage> {
                   .then((value) => {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => viewpage()),
+                          MaterialPageRoute(
+                              builder: (context) => const viewpage()),
                         ),
                       });
             }),
