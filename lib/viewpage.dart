@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:exam_result/components/background.dart';
+import 'package:exam_result/util/reusable.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 
 class viewpage extends StatefulWidget {
   const viewpage({super.key});
@@ -10,47 +10,125 @@ class viewpage extends StatefulWidget {
   State<viewpage> createState() => _viewpageState();
 }
 
-class _viewpageState extends State<viewpage> with TickerProviderStateMixin {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+class _viewpageState extends State<viewpage> {
+  int _page = 0;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  final List<Widget> _pages = [
+    HomePage(),
+    SearchPage(),
+    ChatPage(),
+    FeedPage(),
+    PersonalPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    User? currentUser = FirebaseAuth.instance.currentUser;
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Background(
-          child: currentUser == null
-              ? Center(child: Text('No user logged in'))
-              : StreamBuilder<QuerySnapshot>(
-                  stream: firestore
-                      .collection('Users')
-                      .where('email', isEqualTo: currentUser.email)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
+      appBar: appbardesign(),
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: 0,
+        items: const [
+          CurvedNavigationBarItem(
+            child: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.search),
+            label: 'Search',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.chat_bubble_outline),
+            label: 'Chat',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.newspaper),
+            label: 'Feed',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.perm_identity),
+            label: 'Personal',
+          ),
+        ],
+        color: Color.fromRGBO(71, 177, 212, 1),
+        buttonBackgroundColor: Colors.white,
+        backgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 600),
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
+        letIndexChange: (index) => true,
+      ),
+      body: _pages[_page],
+    );
+  }
+}
 
-                    if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    }
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Home Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
+  }
+}
 
-                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      return Center(child: Text('No Data Available'));
-                    }
+class SearchPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Search Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
+  }
+}
 
-                    final userDocument = snapshot.data!.docs.first;
-                    final String username = userDocument['username'];
+class ChatPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Chat Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
+  }
+}
 
-                    return ListView(
-                      children: [
-                        ListTile(
-                          title: Text(username),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-        ));
+class FeedPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Feed Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
+  }
+}
+
+class PersonalPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Personal Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
   }
 }
