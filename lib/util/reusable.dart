@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:exam_result/provider.dart';
 import 'package:flutter/material.dart';
 
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
@@ -63,45 +62,19 @@ Container LoginButton(BuildContext context, Function onTap) {
 }
 
 PreferredSize appbardesign() {
-  User? currentUser = FirebaseAuth.instance.currentUser;
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   return PreferredSize(
     preferredSize: const Size.fromHeight(65.0), // Set the height of the AppBar
     child: AppBar(
+      automaticallyImplyLeading: false,
       centerTitle: true,
       toolbarHeight: 65,
-      title: currentUser == null
-          ? Center(child: Text('No user logged in'))
-          : StreamBuilder<QuerySnapshot>(
-              stream: firestore
-                  .collection('Users')
-                  .where('email', isEqualTo: currentUser.email)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                }
-
-                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return Center(child: Text('No Data Available'));
-                }
-
-                final userDocument = snapshot.data!.docs.first;
-                final String username = userDocument['username'];
-
-                return Text(username,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                    ));
-              },
-            ),
+      title: Text(userservice.username,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontWeight: FontWeight.bold,
+            fontSize: 35,
+          )),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(

@@ -11,6 +11,7 @@ class viewpage extends StatefulWidget {
 }
 
 class _viewpageState extends State<viewpage> {
+  final PreferredSize myAppBar = appbardesign();
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
@@ -25,7 +26,7 @@ class _viewpageState extends State<viewpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbardesign(),
+      appBar: myAppBar,
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
@@ -51,11 +52,11 @@ class _viewpageState extends State<viewpage> {
             label: 'Personal',
           ),
         ],
-        color: Color.fromRGBO(71, 177, 212, 1),
+        color: const Color.fromRGBO(71, 177, 212, 1),
         buttonBackgroundColor: Colors.white,
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
+        animationDuration: const Duration(milliseconds: 600),
         onTap: (index) {
           setState(() {
             _page = index;
