@@ -1,5 +1,5 @@
-import 'util/mediterranean_diet_view.dart';
-import 'util/fitness_app_theme.dart';
+import 'util/animation_view.dart';
+import 'util/theme.dart';
 import 'package:flutter/material.dart';
 
 class viewpage extends StatefulWidget {
