@@ -1,7 +1,9 @@
+import 'package:exam_result/pages/Result.dart';
 import 'package:exam_result/util/reusable.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class viewpage extends StatefulWidget {
   const viewpage({super.key});
@@ -16,7 +18,7 @@ class _viewpageState extends State<viewpage> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _pages = [
-    HomePage(),
+    Result(),
     SearchPage(),
     ChatPage(),
     FeedPage(),
@@ -29,34 +31,34 @@ class _viewpageState extends State<viewpage> {
       appBar: myAppBar,
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 0,
+        index: 2,
         items: const [
           CurvedNavigationBarItem(
-            child: Icon(Icons.home_outlined),
-            label: 'Home',
+            child: Icon(FontAwesomeIcons.graduationCap),
+            label: 'GPA',
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.search),
             label: 'Search',
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.chat_bubble_outline),
-            label: 'Chat',
+            child: Icon(Icons.assessment),
+            label: 'Results',
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.newspaper),
             label: 'Feed',
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.perm_identity),
-            label: 'Personal',
+            child: Icon(FontAwesomeIcons.trophy),
+            label: 'Rank',
           ),
         ],
         color: const Color.fromRGBO(71, 177, 212, 1),
         buttonBackgroundColor: Colors.white,
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 600),
+        animationDuration: const Duration(milliseconds: 200),
         onTap: (index) {
           setState(() {
             _page = index;
@@ -65,19 +67,6 @@ class _viewpageState extends State<viewpage> {
         letIndexChange: (index) => true,
       ),
       body: _pages[_page],
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Center(
-        child: Text("Home Page",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
-      ),
     );
   }
 }
