@@ -14,13 +14,13 @@ class viewpage extends StatefulWidget {
 
 class _viewpageState extends State<viewpage> {
   final PreferredSize myAppBar = appbardesign();
-  int _page = 0;
+  int _page = 2;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _pages = [
-    Result(),
+    HomePage(),
     SearchPage(),
-    ChatPage(),
+    Result(),
     FeedPage(),
     PersonalPage(),
   ];
@@ -71,6 +71,19 @@ class _viewpageState extends State<viewpage> {
   }
 }
 
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text("Home Page",
+            style: TextStyle(fontSize: 24, color: Colors.black)),
+      ),
+    );
+  }
+}
+
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -78,19 +91,6 @@ class SearchPage extends StatelessWidget {
       color: Colors.white,
       child: const Center(
         child: Text("Search Page",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
-      ),
-    );
-  }
-}
-
-class ChatPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Center(
-        child: Text("Chat Page",
             style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
@@ -116,7 +116,7 @@ class PersonalPage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Personal Page",
+        child: Text("Personal Paoge",
             style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );

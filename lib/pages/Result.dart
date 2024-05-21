@@ -6,7 +6,7 @@ class Result extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Home Page",
+        child: Text("Moda paka",
             style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
