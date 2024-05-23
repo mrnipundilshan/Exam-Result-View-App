@@ -63,7 +63,7 @@ Container LoginButton(BuildContext context, Function onTap) {
 
 PreferredSize appbardesign() {
   return PreferredSize(
-    preferredSize: const Size.fromHeight(65.0), // Set the height of the AppBar
+    preferredSize: const Size.fromHeight(40.0), // Set the height of the AppBar
     child: AppBar(
       automaticallyImplyLeading: false,
       centerTitle: true,
@@ -73,7 +73,7 @@ PreferredSize appbardesign() {
           style: const TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
             fontWeight: FontWeight.bold,
-            fontSize: 35,
+            fontSize: 25,
           )),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
