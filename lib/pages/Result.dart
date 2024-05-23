@@ -59,23 +59,7 @@ class Result extends StatelessWidget {
             rows: const [
               DataRow(
                 cells: [
-                  DataCell(Center(child: Text('IT'))),
-                  DataCell(Center(child: Text('A'))),
-                  DataCell(Center(child: Text('A+'))),
-                  DataCell(Center(child: Text('A+'))),
-                ],
-              ),
-              DataRow(
-                cells: [
-                  DataCell(Center(child: Text('IT'))),
-                  DataCell(Center(child: Text('A'))),
-                  DataCell(Center(child: Text('A+'))),
-                  DataCell(Center(child: Text('A+'))),
-                ],
-              ),
-              DataRow(
-                cells: [
-                  DataCell(Center(child: Text('IT'))),
+                  DataCell(Center(child: Text('IT1262'))),
                   DataCell(Center(child: Text('A'))),
                   DataCell(Center(child: Text('A+'))),
                   DataCell(Center(child: Text('A+'))),
