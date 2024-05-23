@@ -90,7 +90,7 @@ class _LoginpageState extends State<Loginpage> {
                   reusableTextField("Enter Username", Icons.person, false,
                       _usernameTextController),
                   const SizedBox(height: 30),
-                  reusableTextField("Enter Password", Icons.lock, false,
+                  reusableTextField("Enter Password", Icons.lock, true,
                       _passwordTextController),
                 ],
               ),

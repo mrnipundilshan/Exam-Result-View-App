@@ -15,6 +15,12 @@ class Result extends StatelessWidget {
         .where('username', isEqualTo: userservice.username)
         .get();
 
+    // Fetch data from IT1262 collection
+    var querySnapshotIT1214 = await _firestore
+        .collection('IT1214')
+        .where('username', isEqualTo: userservice.username)
+        .get();
+
     // Fetch data from IT1223 collection
     var querySnapshotIT1223 = await _firestore
         .collection('IT1223')
@@ -22,6 +28,15 @@ class Result extends StatelessWidget {
         .get();
 
     Map<String, Map<String, String>> combinedData = {};
+
+    if (querySnapshotIT1214.docs.isNotEmpty) {
+      var doc = querySnapshotIT1262.docs.first;
+      combinedData['IT1262'] = {
+        'Theory': doc['Theory'],
+        'Practical': doc['Practical'],
+        'Overall': doc['Overall'],
+      };
+    }
 
     if (querySnapshotIT1262.docs.isNotEmpty) {
       var doc = querySnapshotIT1262.docs.first;
@@ -67,6 +82,13 @@ class Result extends StatelessWidget {
                     return const Center(child: Text('No Data Available'));
                   }
                   var combinedData = snapshot.data!;
+
+                  var it1214Data = combinedData['IT1214'] ??
+                      {
+                        'Theory': '*',
+                        'Practical': 'data na',
+                        'Overall': 'wutto'
+                      };
                   var it1262Data = combinedData['IT1262'] ??
                       {'Theory': '-', 'Practical': '-', 'Overall': '-'};
                   var it1223Data = combinedData['IT1223'] ??
@@ -204,9 +226,12 @@ class Result extends StatelessWidget {
                         rows: [
                           DataRow(cells: [
                             DataCell(Center(child: Text('IT1214'))),
-                            DataCell(Center(child: Text("-"))),
-                            DataCell(Center(child: Text("-"))),
-                            DataCell(Center(child: Text("-"))),
+                            DataCell(
+                                Center(child: Text(it1214Data['Theory']!))),
+                            DataCell(
+                                Center(child: Text(it1214Data['Practical']!))),
+                            DataCell(
+                                Center(child: Text(it1214Data['Overall']!))),
                           ]),
                           DataRow(cells: [
                             const DataCell(Center(child: Text('IT1223'))),
