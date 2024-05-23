@@ -8,6 +8,42 @@ class Result extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Result({super.key});
 
+  Future<Map<String, Map<String, String>>> fetchData() async {
+    // Fetch data from IT1262 collection
+    var querySnapshotIT1262 = await _firestore
+        .collection('IT1262')
+        .where('username', isEqualTo: userservice.username)
+        .get();
+
+    // Fetch data from IT1223 collection
+    var querySnapshotIT1223 = await _firestore
+        .collection('IT1223')
+        .where('username', isEqualTo: userservice.username)
+        .get();
+
+    Map<String, Map<String, String>> combinedData = {};
+
+    if (querySnapshotIT1262.docs.isNotEmpty) {
+      var doc = querySnapshotIT1262.docs.first;
+      combinedData['IT1262'] = {
+        'Theory': doc['Theory'],
+        'Practical': doc['Practical'],
+        'Overall': doc['Overall'],
+      };
+    }
+
+    if (querySnapshotIT1223.docs.isNotEmpty) {
+      var doc = querySnapshotIT1223.docs.first;
+      combinedData['IT1223'] = {
+        'Theory': doc['Theory'],
+        'Practical': doc['Practical'],
+        'Overall': doc['Overall'],
+      };
+    }
+
+    return combinedData;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,11 +52,8 @@ class Result extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            StreamBuilder<QuerySnapshot>(
-                stream: _firestore
-                    .collection('IT1262')
-                    .where('username', isEqualTo: userservice.username)
-                    .snapshots(),
+            FutureBuilder<Map<String, Map<String, String>>>(
+                future: fetchData(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
@@ -30,15 +63,15 @@ class Result extends StatelessWidget {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   }
 
-                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(child: Text('No Data Available'));
                   }
-                  final userDocument = snapshot.data!.docs.first;
-                  String Theory = userDocument['Theory'];
-                  String Practical = userDocument['Practical'];
-                  String Overall = userDocument['Overall'];
+                  var combinedData = snapshot.data!;
+                  var it1262Data = combinedData['IT1262'] ??
+                      {'Theory': '-', 'Practical': '-', 'Overall': '-'};
+                  var it1223Data = combinedData['IT1223'] ??
+                      {'Theory': '-', 'Practical': '-', 'Overall': '-'};
 
-                  print(Overall);
                   return Column(
                     children: [
                       const SizedBox(height: 5.0),
@@ -176,10 +209,13 @@ class Result extends StatelessWidget {
                             DataCell(Center(child: Text("-"))),
                           ]),
                           DataRow(cells: [
-                            DataCell(Center(child: Text('IT1223'))),
-                            DataCell(Center(child: Text("-"))),
-                            DataCell(Center(child: Text("-"))),
-                            DataCell(Center(child: Text("-"))),
+                            const DataCell(Center(child: Text('IT1223'))),
+                            DataCell(
+                                Center(child: Text(it1223Data['Theory']!))),
+                            DataCell(
+                                Center(child: Text(it1223Data['Practical']!))),
+                            DataCell(
+                                Center(child: Text(it1223Data['Overall']!))),
                           ]),
                           DataRow(cells: [
                             DataCell(Center(child: Text('IT1232'))),
@@ -201,9 +237,12 @@ class Result extends StatelessWidget {
                           ]),
                           DataRow(cells: [
                             DataCell(Center(child: Text('IT1262'))),
-                            DataCell(Center(child: Text(Theory))),
-                            DataCell(Center(child: Text(Practical))),
-                            DataCell(Center(child: Text(Overall))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Theory']!))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Practical']!))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Overall']!))),
                           ]),
                           DataRow(cells: [
                             DataCell(Center(child: Text('ACU1212'))),
