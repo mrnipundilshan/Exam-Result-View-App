@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:325197486834:android:6c0ae27fd39b47f3034e6b",
+        "mobilesdk_app_id": "1:325197486834:android:276be7f92b14d777034e6b",
         "android_client_info": {
-          "package_name": "com.example.exam_result"
+          "package_name": "com.nipun.exam_result_app"
         }
       },
       "oauth_client": [],

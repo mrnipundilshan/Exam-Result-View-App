@@ -1,4 +1,4 @@
-package com.example.exam_result
+package com.nipun.exam_result_app
 
 import io.flutter.embedding.android.FlutterActivity
 
