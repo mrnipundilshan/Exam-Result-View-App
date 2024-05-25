@@ -1,4 +1,4 @@
-import 'package:exam_result/pages/Result.dart';
+import 'package:exam_result/pages/firstyear.dart';
 import 'package:exam_result/util/reusable.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
@@ -14,14 +14,14 @@ class viewpage extends StatefulWidget {
 
 class _viewpageState extends State<viewpage> {
   final PreferredSize myAppBar = appbardesign();
-  int _page = 2;
+  int _page = 1;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _pages = [
     HomePage(),
-    SearchPage(),
-    Result(),
-    FeedPage(),
+    firstyear(),
+    secondpage(),
+    thirdpage(),
     PersonalPage(),
   ];
 
@@ -31,23 +31,23 @@ class _viewpageState extends State<viewpage> {
       appBar: myAppBar,
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 2,
+        index: 1,
         items: const [
           CurvedNavigationBarItem(
             child: Icon(FontAwesomeIcons.graduationCap),
             label: 'GPA',
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.search),
-            label: '-',
+            child: Icon(Icons.looks_one),
+            label: 'Year',
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.assessment),
-            label: 'Results',
+            child: Icon(Icons.looks_two_sharp),
+            label: 'Year',
           ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.newspaper),
-            label: '-',
+            child: Icon(Icons.looks_3_sharp),
+            label: 'Year',
           ),
           CurvedNavigationBarItem(
             child: Icon(FontAwesomeIcons.trophy),
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class SearchPage extends StatelessWidget {
+class secondpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -97,7 +97,7 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-class FeedPage extends StatelessWidget {
+class thirdpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

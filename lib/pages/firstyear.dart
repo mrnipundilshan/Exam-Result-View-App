@@ -4,9 +4,9 @@ import 'package:exam_result/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Result extends StatelessWidget {
+class firstyear extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Result({super.key});
+  firstyear({super.key});
 
   Future<Map<String, Map<String, String>>> fetchData() async {
     // Fetch data from IT1262 collection
