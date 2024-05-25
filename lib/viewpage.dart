@@ -77,8 +77,7 @@ class HomePage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Home Page",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
+        child: Text("-", style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
   }
@@ -90,8 +89,7 @@ class secondpage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Search Page",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
+        child: Text("-", style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
   }
@@ -103,8 +101,7 @@ class thirdpage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Feed Page",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
+        child: Text("-", style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
   }
@@ -116,8 +113,7 @@ class PersonalPage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text("Personal Paoge",
-            style: TextStyle(fontSize: 24, color: Colors.black)),
+        child: Text("-", style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
     );
   }
