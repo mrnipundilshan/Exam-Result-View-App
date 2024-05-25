@@ -39,7 +39,7 @@ class _viewpageState extends State<viewpage> {
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.search),
-            label: 'Search',
+            label: '-',
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.assessment),
@@ -47,7 +47,7 @@ class _viewpageState extends State<viewpage> {
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.newspaper),
-            label: 'Feed',
+            label: '-',
           ),
           CurvedNavigationBarItem(
             child: Icon(FontAwesomeIcons.trophy),

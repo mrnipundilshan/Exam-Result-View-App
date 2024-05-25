@@ -84,11 +84,7 @@ class Result extends StatelessWidget {
                   var combinedData = snapshot.data!;
 
                   var it1214Data = combinedData['IT1214'] ??
-                      {
-                        'Theory': '*',
-                        'Practical': 'data na',
-                        'Overall': 'wutto'
-                      };
+                      {'Theory': '-', 'Practical': '-', 'Overall': '-'};
                   var it1262Data = combinedData['IT1262'] ??
                       {'Theory': '-', 'Practical': '-', 'Overall': '-'};
                   var it1223Data = combinedData['IT1223'] ??
@@ -249,6 +245,15 @@ class Result extends StatelessWidget {
                             DataCell(Center(child: Text("-"))),
                           ]),
                           DataRow(cells: [
+                            DataCell(Center(child: Text('IT1262'))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Theory']!))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Practical']!))),
+                            DataCell(
+                                Center(child: Text(it1262Data['Overall']!))),
+                          ]),
+                          DataRow(cells: [
                             DataCell(Center(child: Text('IT1242'))),
                             DataCell(Center(child: Text("-"))),
                             DataCell(Center(child: Text("-"))),
@@ -259,15 +264,6 @@ class Result extends StatelessWidget {
                             DataCell(Center(child: Text("-"))),
                             DataCell(Center(child: Text("-"))),
                             DataCell(Center(child: Text("-"))),
-                          ]),
-                          DataRow(cells: [
-                            DataCell(Center(child: Text('IT1262'))),
-                            DataCell(
-                                Center(child: Text(it1262Data['Theory']!))),
-                            DataCell(
-                                Center(child: Text(it1262Data['Practical']!))),
-                            DataCell(
-                                Center(child: Text(it1262Data['Overall']!))),
                           ]),
                           DataRow(cells: [
                             DataCell(Center(child: Text('ACU1212'))),
